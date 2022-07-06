@@ -4,17 +4,87 @@
   >
     <Spinner />
   </template>
-  <div
-    v-if="!loading"
-    id="jobs"
-  >
-    <template
-      v-for="job in jobs"
-      :key="job"
+  
+
+  <div v-if="!loading">
+    <div class="header-group">
+      <div>Dev</div> 
+    </div>
+    <div
+      id="jobs"
     >
-      <Job :job="job" />
-    </template>
+      <template
+        v-for="job in jobs" 
+        :key="job"
+      >
+        <div 
+          v-if="job.name.toLowerCase().includes('dev')"
+        >
+          <Job :job="job" />
+        </div>
+      </template>
+    </div>
+    <br>
+    <div class="header">
+      <div class="header-group">
+        Staging
+      </div>
+      <div
+        id="jobs"
+      >
+      <template
+        v-for="job in jobs" 
+        :key="job"
+      >
+        <div 
+          v-if="job.name.toLowerCase().includes('stg')"
+        >
+          <Job :job="job" />
+        </div>
+      </template>
+      </div>
+    </div>
+    <div class="header">
+      <div class="header-group">
+        Prod
+      </div>
+      <div
+        id="jobs"
+      >
+        <template
+          v-for="job in jobs" 
+          :key="job"
+        >
+        <div 
+          v-if="job.name.toLowerCase().includes('prod')"
+        >
+          <Job :job="job" />
+        </div>
+      </template>
+      </div>
+    </div>
+    <div class="header">
+      <div class="header-group">
+        Others 
+      </div>
+      <div
+        id="jobs"
+      >
+        <template
+          v-for="job in jobs" 
+          :key="job"
+        >
+          <div 
+            v-if="!job.name.toLowerCase().match( /dev|stg|prod/g )"
+          >
+            <Job :job="job" />
+          </div>
+        </template>
+      </div>
+    </div>
+
   </div>
+ 
   <NoFailedBuild v-if="!loading && jobs.length === 0" />
 </template>
 
@@ -123,9 +193,35 @@ export default {
   display: grid;
   align-items: center;
   grid-template-rows: repeat(auto-fit, minmax(90px, 115px));
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   grid-gap: 10px;
   width: 100%;
 }
 
+
+.header {
+  height: 6%;
+  margin-bottom: 35px;
+}
+
+.header-title {
+  font-family: Snell Roundhand, cursive;
+  color: #5b5454;
+  font-size: 50px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.header-group {
+  font-family: Snell Roundhand, cursive;
+  color: #5b5454;
+  font-size: 25px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.separator {
+  height: 0;
+  border: 1px solid #5b5454;
+}
 </style>
