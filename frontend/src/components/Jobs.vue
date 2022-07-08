@@ -32,16 +32,16 @@
       <div
         id="jobs"
       >
-      <template
-        v-for="job in jobs" 
-        :key="job"
-      >
-        <div 
-          v-if="job.name.toLowerCase().includes('stg')"
+        <template
+          v-for="job in jobs" 
+          :key="job"
         >
-          <Job :job="job" />
-        </div>
-      </template>
+          <div 
+            v-if="job.name.toLowerCase().includes('stg')"
+          >
+            <Job :job="job" />
+          </div>
+        </template>
       </div>
     </div>
     <div class="header">
@@ -55,12 +55,12 @@
           v-for="job in jobs" 
           :key="job"
         >
-        <div 
-          v-if="job.name.toLowerCase().includes('prod')"
-        >
-          <Job :job="job" />
-        </div>
-      </template>
+          <div 
+            v-if="job.name.toLowerCase().includes('prod')"
+          >
+            <Job :job="job" />
+          </div>
+        </template>
       </div>
     </div>
     <div class="header">
@@ -82,7 +82,6 @@
         </template>
       </div>
     </div>
-
   </div>
  
   <NoFailedBuild v-if="!loading && jobs.length === 0" />
